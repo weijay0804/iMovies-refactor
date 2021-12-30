@@ -1,0 +1,46 @@
+.page-container{
+    width: 1200px;
+    margin: auto;
+}
+
+.page-header{
+    width: 100%;
+    border-bottom: 2px solid rgb(85, 83, 83);
+}
+
+.items-container{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.items{
+    width: 900px;
+    height: 750px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.item-2{
+    margin-top: 20px;
+}
+
+.itme-header{
+    margin: 5px 0;
+    border-bottom: 2px solid gray;
+}
+
+.recommend-items{
+    width: 900px;
+    height: 375px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+

@@ -1,0 +1,8 @@
+__pycache__
+.env
+Pipfile
+Pipfile.lock
+movie_datas
+*.md
+test*
+*.txt

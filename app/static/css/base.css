@@ -1,0 +1,32 @@
+body{
+    font-family: 'Shippori Antique', sans-serif;
+}
+
+.container {
+    width: 1200px;
+}
+
+.wrap {
+    width: 1200px;
+    margin: auto;
+}
+
+.alert-container{
+    margin-top: 10px;
+    width: 100%;
+}
+
+body {
+    margin-bottom: 70px;
+   
+}
+
+.page-header{
+    margin-top: 20px;
+}
+
+a{
+    text-decoration: none;
+}
+
+

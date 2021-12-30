@@ -1,0 +1,24 @@
+{% extends 'movies/movies.html' %} 
+
+{% block title %} iMovies - {{ genre }} Movies {% endblock %} 
+
+{% block page %}
+    <div class="page-container">
+        <div class="page-header">
+            <h2>電影類別:{{ genre }}</h2>
+        </div>
+        <div class="items-container">
+            {{ macros.movies_sort('main.movie_genre', genre = genre)}}
+            {% include 'assist/_movies.html' %}
+        </div>
+    </div>
+    {% if pagination %}
+        <div class="pagination-content">
+            {{ macros.pagination_widget(pagination, 'main.movie_genre', **url_args) }}
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+
+

@@ -1,0 +1,21 @@
+{% extends 'movies/movies.html' %} 
+
+{% block title %} iMovies - Popular Movies {% endblock %} 
+
+{% block page %}
+    <div class="page-container">
+        <div class="page-header">
+            <h2>最近熱門電影</h2>
+        </div>
+        <div class="items-container">
+            {{ macros.movies_sort('main.popular_movies')}}
+            {% include 'assist/_movies.html' %}
+        </div>
+    </div>
+    {% if pagination %}
+        <div class="pagination-content">
+            {{ macros.pagination_widget(pagination, 'main.popular_movies', **url_args) }}
+        </div>
+    {% endif %}
+{% endblock %}
+

@@ -1,0 +1,25 @@
+{% extends 'movies/movies.html' %} 
+
+{% block title %} iMovies - Search {{ key }} {% endblock %} 
+
+{% block page %}
+    <div class="page-container">
+        <div class="page-header">
+            <h2>{{ key }} 搜尋結果</h2>
+        </div>
+        <div class="items-container">
+            {% if movies %} 
+            {{ macros.movies_sort('main.movie_search', key=key)}}
+                {% include 'assist/_movies.html' %}
+            {% else %} 
+                <h3>沒有相符的結果</h3>
+            {% endif %}
+        </div>
+    </div>
+    {% if pagination %}
+        <div class="pagination-content">
+            {{ macros.pagination_widget(pagination, 'main.movie_search', **url_args) }}
+        </div>
+    {% endif %}
+{% endblock %}
+
