@@ -15,7 +15,7 @@
 
 .items{
     width: 900px;
-    height: 750px;
+    height: 800px;
     margin: auto;
     display: flex;
     flex-direction: row;

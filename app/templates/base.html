@@ -91,16 +91,14 @@
                 <ul class="navbar-nav justify-content-end">
                   {% if current_user.is_authenticated %} 
                     <li class="nav-item navbar-right">
-                        <!-- TODO  url_for('auth.logout')  -->
-                      <a class="nav-link" href="#">
+                      <a class="nav-link" href="{{ url_for('auth.logout') }}">
                         <img src="{{ url_for('static', filename = 'images/icon/logout.svg') }}" width="24" height="24" class="d-inline-block align-text-top">
                         登出
                       </a>
                     </li>
                     {% else %}
                     <li class="nav-item navbar-right">
-                        <!-- TODO url_for('auth.login') -->
-                      <a class="nav-link" href="#">
+                      <a class="nav-link" href="{{ url_for('auth.login') }}">
                         <img src="{{ url_for('static', filename = 'images/icon/login.svg') }}" width="24" height="24" class="d-inline-block align-text-top">
                         登入
                       </a>

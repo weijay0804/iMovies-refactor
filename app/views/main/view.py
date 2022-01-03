@@ -53,7 +53,7 @@ def index():
 
     # TODO 加上 current_user.is_authenticated
     # 如果使用者登入，並且使用者有勾選喜歡的類別
-    if user_like_genres:
+    if current_user.is_authenticated and user_like_genres:
         # 如果使用者勾選的類別小於要顯示的數量，就直接全部拿出來
         if len(user_like_genres) <= how_many_genres_want_to_show:
             recomend_genres.extend(user_like_genres)
