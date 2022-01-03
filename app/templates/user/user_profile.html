@@ -1,0 +1,73 @@
+{% extends 'base.html' %} 
+
+{% block head %} 
+    {{ super() }}
+    <link href="{{ url_for('static', filename = 'css/user_profile.css' ) }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %} {{ user.username }} Profile {% endblock %}
+
+
+{% block page %} 
+    <div class="page-container">
+        <div class="page-header">
+            <h2>{{ user.username }} 的個人檔案</h2>
+        </div>
+        <div class="items-container">
+            <div class="profile-container">
+                <div class="user-image">
+                    <img src="{{ user.gravatar(size = 256) }}" class="img-thumbnail" alt="...">
+                </div>
+                <div class="user-profile">
+                    <ul>
+                        <li>
+                            {% if user_profile_datas['name'] %}
+                            <h3>{{ user_profile_datas['name'] }}</h3>
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if user_profile_datas['location'] %}
+                            來自
+                            
+                            <a href="http://maps.google.com/?q={{ user_profile_datas['location'] }}" target="_blank">{{ user_profile_datas['location'] }}</a>
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if user_profile_datas['about_me'] %}
+                            關於我 : 
+                            
+                            {{ user_profile_datas['about_me'] }}
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if user_profile_datas['favorite_movie_genres'] %}
+                            喜歡的電影類別: 
+                            {% for genre in user_profile_datas['favorite_movie_genres'] %} 
+                                <a href="{{url_for('main.movie_genre', genre = genre) }}">
+                                    {{ genre }}
+                                </a>
+                                
+                            {% endfor %}
+                            
+                            {% endif %}
+                        </li>
+                        <li>
+                            從 {{ moment(user.member_since).format('LL') }} 加入 <br>
+                            上次登入是 {{ moment(user.last_seen).fromTime(now) }}
+                        </li>
+                        {% if current_user == user %}
+                        <li class="edit-btn">
+                            <!-- TODO  url_for('user.edit_profile', id = current_user.id) -->
+                            <a href="#">
+                            <button type="button" class="btn btn-outline-secondary">編輯</button>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

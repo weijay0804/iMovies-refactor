@@ -47,4 +47,7 @@ def create_app(config_name : str) -> Flask:
     from .views.auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint, url_prefix = '/auth')
 
+    from .views.user import user as user_blueprint
+    app.register_blueprint(user_blueprint, url_prefix = '/user')
+
     return app
