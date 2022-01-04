@@ -38,6 +38,28 @@ class MovieGenres():
         '音樂',
     ]
 
+    movie_genres_en = {
+        '動作' : 'action',
+        '犯罪' : 'crime',
+        '戰爭' : 'war',
+        '奇幻' : 'fantasy',
+        '驚悚' : 'thriller',
+        '動畫' : 'fantasy',
+        '歷史' : 'history',
+        '西部' : 'western',
+        '冒險' : 'adventure',
+        '科幻' : 'science-fiction',
+        '恐怖' : 'crime',
+        '電視電影' : 'TV-movie',
+        '劇情' : 'drama',
+        '懸疑' : 'mystery',
+        '音樂' : 'music',
+        '家庭' : 'family',
+        '愛情' : 'romance',
+        '喜劇' : 'comedy',
+        '紀錄' : 'Documentary'
+    }
+
 
 class Movies(db.Model):
     ''' 電影資料庫模型 '''

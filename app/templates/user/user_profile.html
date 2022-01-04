@@ -21,28 +21,28 @@
                 <div class="user-profile">
                     <ul>
                         <li>
-                            {% if user_profile_datas['name'] %}
-                            <h3>{{ user_profile_datas['name'] }}</h3>
+                            {% if user_profile_datas.get('name') %}
+                            <h3>{{ user_profile_datas.get('name') }}</h3>
                             {% endif %}
                         </li>
                         <li>
-                            {% if user_profile_datas['location'] %}
+                            {% if user_profile_datas.get('location') %}
                             來自
                             
-                            <a href="http://maps.google.com/?q={{ user_profile_datas['location'] }}" target="_blank">{{ user_profile_datas['location'] }}</a>
+                            <a href="http://maps.google.com/?q={{ user_profile_datas.get('location') }}" target="_blank">{{ user_profile_datas.get('location') }}</a>
                             {% endif %}
                         </li>
                         <li>
-                            {% if user_profile_datas['about_me'] %}
+                            {% if user_profile_datas.get('about_me') %}
                             關於我 : 
                             
-                            {{ user_profile_datas['about_me'] }}
+                            {{ user_profile_datas.get('about_me') }}
                             {% endif %}
                         </li>
                         <li>
-                            {% if user_profile_datas['favorite_movie_genres'] %}
+                            {% if user_profile_datas.get('genres') %}
                             喜歡的電影類別: 
-                            {% for genre in user_profile_datas['favorite_movie_genres'] %} 
+                            {% for genre in user_profile_datas.get('genres') %} 
                                 <a href="{{url_for('main.movie_genre', genre = genre) }}">
                                     {{ genre }}
                                 </a>
@@ -57,8 +57,7 @@
                         </li>
                         {% if current_user == user %}
                         <li class="edit-btn">
-                            <!-- TODO  url_for('user.edit_profile', id = current_user.id) -->
-                            <a href="#">
+                            <a href="{{ url_for('user.user_profile_edit', id = current_user.id) }}">
                             <button type="button" class="btn btn-outline-secondary">編輯</button>
                             </a>
                         </li>
