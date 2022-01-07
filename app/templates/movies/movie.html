@@ -30,10 +30,15 @@
                             {% if current_user.is_authenticated and ( movie in current_user.collect_movies ) %}
                             <img src="{{ url_for('static', filename = 'images/movies/check.png') }}">
                             {% endif %}
-                            <!-- TODO url_for('user.user_add_movie', id = movie.id) -->
-                            <a href="#">
-                                <img onmouseover="add_over(this)" onmouseout="add_out(this)" src="{{ url_for('static', filename = 'images/movies/add-empty.svg') }}"> 
-                            </a>
+                            {% if current_user.is_authenticated %}
+                                <a href="{{ url_for('user.user_add_collect_movie', movie_id = movie.id, user_id = current_user.id) }}">
+                                    <img onmouseover="add_over(this)" onmouseout="add_out(this)" src="{{ url_for('static', filename = 'images/movies/add-empty.svg') }}"> 
+                                </a>
+                            {% else %} 
+                                <a href="{{ url_for('auth.login') }}">
+                                    <img onmouseover="add_over(this)" onmouseout="add_out(this)" src="{{ url_for('static', filename = 'images/movies/add-empty.svg') }}"> 
+                                </a>
+                            {% endif %}
                             
                         </li>
                         

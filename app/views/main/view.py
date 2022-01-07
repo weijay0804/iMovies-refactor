@@ -24,8 +24,8 @@ from app.functions import movie_function
 def inject_movie_genres():
     ''' 讓模板可以直接讀取電影類別 '''
 
-    gneres = MovieGenres.movie_genres
-    return dict(movie_genres = gneres)
+    genres = MovieGenres.movie_genres
+    return dict(movie_genres = genres)
 
 
 @main.route('/')
@@ -44,24 +44,24 @@ def index():
     mongo_db = mongo.client.imovies
     user_info = mongo_db.user_info
 
-    # 取得 user 資料
-    # TODO 修改查詢內容
-    user_data = user_info.find_one({'_id' : 1})
-    user_like_genres = user_data['info'].get('genres')
-
     how_many_genres_want_to_show = 3
 
-    # TODO 加上 current_user.is_authenticated
-    # 如果使用者登入，並且使用者有勾選喜歡的類別
-    if current_user.is_authenticated and user_like_genres:
-        # 如果使用者勾選的類別小於要顯示的數量，就直接全部拿出來
-        if len(user_like_genres) <= how_many_genres_want_to_show:
-            recomend_genres.extend(user_like_genres)
+    # 如果使用者登入
+    if current_user.is_authenticated:
+        # 取得使用者資料
+        user_data = user_info.find_one({'_id' : current_user.id})
+        user_like_genres = user_data['info'].get('genres')
+
+        # 如果使用者有勾選喜歡的電影類別
+        if user_like_genres:
+            # 如果使用者勾選的類別小於要顯示的數量，就直接全部拿出來
+            if len(user_like_genres) <= how_many_genres_want_to_show:
+                recomend_genres.extend(user_like_genres)
         
-        # 如果類別數量大於，就隨機挑選
-        else:
-            random_genres = movie_function.get_user_recommend_movies(how_many_genres_want_to_show, user_like_genres)
-            recomend_genres.extend(random_genres)
+            # 如果類別數量大於，就隨機挑選
+            else:
+                random_genres = movie_function.get_user_recommend_movies(how_many_genres_want_to_show, user_like_genres)
+                recomend_genres.extend(random_genres)
 
     # 如果使用者沒有登入，或是電影數量不夠，就再湊齊
     if len(recomend_genres) < how_many_genres_want_to_show:
