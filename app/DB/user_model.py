@@ -11,7 +11,7 @@ import hashlib
 
 
 from app import db, login_manager
-from .junction_table import user_collect_movies
+from .junction_table import user_collect_movies, user_watched_movies
 
 class Users(db.Model, UserMixin):
     ''' 使用者資料庫模型 '''
@@ -26,7 +26,8 @@ class Users(db.Model, UserMixin):
     member_since = db.Column(db.DateTime(), default = datetime.utcnow)
     last_seen = db.Column(db.DateTime(), default = datetime.utcnow)
 
-    collect_movies = db.relationship('Movies', secondary = user_collect_movies, backref = db.backref('users', lazy = 'dynamic'), lazy = 'dynamic')
+    collect_movies = db.relationship('Movies', secondary = user_collect_movies, backref = db.backref('collect_users', lazy = 'dynamic'), lazy = 'dynamic')
+    watched_movies = db.relationship('Movies', secondary = user_watched_movies, backref = db.backref('watched_users', lazy = 'dynamic'), lazy = 'dynamic')
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
