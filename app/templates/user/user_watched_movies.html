@@ -1,15 +1,15 @@
 {% extends 'movies/movies.html' %} 
 
-{% block title %} {{ current_user.username }} 的電影清單 {% endblock %} 
+{% block title %} {{ current_user.username }} 已經看過的電影 {% endblock %} 
 
 {% block page %}
     <div class="page-container">
         <div class="page-header">
-            <h2>{{ current_user.username }} 收藏的電影</h2>
-            <h4> 你收藏了 {{ movies_count }} 部電影</h4>
+            <h2>{{ current_user.username }} 看過的電影</h2>
+            <h4> 你已經看了 {{ movies_count }} 部電影</h4>
         </div>
         <div class="items-container">
-            {{ macros.movies_sort('user.user_collect_movies', user_id = url_args['user_id']) }}
+            {{ macros.movies_sort('user.user_watched_movies', user_id = url_args['user_id']) }}
             <div class="table-container">
                 <table>
                     <thead>
@@ -62,11 +62,7 @@
                                     
                                 </td>
                                 <td>
-                                    <!-- TODO url_for('user.user_add_watched_movie', id = movie.id) -->
-                                    <a href="{{ url_for('user.user_add_watched_movie', user_id = current_user.id, movie_id = movie.id) }}" title="加入到已觀看電影">
-                                        <img onmouseover="add_over(this)" onmouseout="add_out(this)" src="{{ url_for('static', filename = 'images/movies/add-empty.svg') }}"> 
-                                    </a>
-                                    <a href="{{ url_for('user.user_delete_collect_movie', movie_id = movie.id, user_id = current_user.id) }}" title="從清單中刪除">
+                                    <a href="{{ url_for('user.user_delete_watched_movie', movie_id = movie.id, user_id = current_user.id) }}" title="從清單中刪除">
                                         <img onmouseover="delete_over(this)" onmouseout="delete_out(this)" src="{{ url_for('static', filename = 'images/movies/dash-empty.svg') }}"> 
                                     </a>
                                 </td>
@@ -81,7 +77,7 @@
     </div>
     {% if pagination %}
         <div class="pagination-content">
-            {{ macros.pagination_widget(pagination, 'user.user_collect_movies', **url_args) }}
+            {{ macros.pagination_widget(pagination, 'user.user_watched_movies', **url_args) }}
         </div>
     {% endif %}
 {% endblock %}

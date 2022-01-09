@@ -27,7 +27,7 @@
                     <ul>
                         <li>
                             <!-- TODO  if current_user.is_authenticated and ( movie in current_user.movies or movie in current_user.watched_movies -->
-                            {% if current_user.is_authenticated and ( movie in current_user.collect_movies ) %}
+                            {% if current_user.is_authenticated and ( movie in current_user.collect_movies or movie in current_user.watched_movies ) %}
                             <img src="{{ url_for('static', filename = 'images/movies/check.png') }}">
                             {% endif %}
                         </li>
@@ -48,7 +48,17 @@
                                         </a>
                                         {% endif %}
                                     </li>
-                                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        {% if current_user.is_authenticated %}
+                                        <a class="dropdown-item" href="{{ url_for('user.user_add_watched_movie', movie_id = movie.id, user_id = current_user.id) }}">
+                                            已經看過的電影清單
+                                        </a>
+                                        {% else %}
+                                        <a class="dropdown-item" href="{{ url_for('auth.login') }}">
+                                            已經看過的電影清單
+                                        </a>
+                                        {% endif %}
+                                    </li>
                                 </ul>
                             </div>
                         </li>

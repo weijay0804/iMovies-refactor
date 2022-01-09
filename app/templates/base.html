@@ -79,7 +79,7 @@
                     </li>
                     <li class="nav-item navbar-right">
                         <!-- TODO  url_for('user.user_watched_movies', id = current_user.id)  -->
-                      <a class="nav-link" href="#">
+                      <a class="nav-link" href="{{ url_for('user.user_watched_movies', user_id = current_user.id) }}">
                         <img src="{{ url_for('static', filename = 'images/icon/eye.svg') }}" width="24" height="24" class="d-inline-block align-text-top">
                         已觀看的電影
                       </a>
